@@ -396,7 +396,9 @@ html:not(.touch) .head-link-drop a:hover {
     margin: 12px;
     border-radius: 10px;
 }
-
+#image-generator-top .button,#download{
+    height: 30px;
+}
 #image-generator-top .button:hover {
     background: transparent;
     box-shadow: 0 0 5px #ffffff77, -5px 0 20px rgba(255, 0, 255, .7), 5px 0 20px rgba(0, 255, 255, .7);
