@@ -1,12 +1,12 @@
 // DailyForecast.js
 import React from 'react';
 
-const DailyForecast = ({ weatherForecast, getDay, weatherImageMapping ,city }) => (
+const DailyForecast = ({ weatherForecast, getDay, weatherImageMapping, city }) => (
     <div>
         <h2 className='font-bold text-orange-500 underline pt-6 mt-6 mb-2 text-4xl justify-center'>Daily Forecast</h2>
         <p>Weather Details For 5 Days</p>
         <h3 className='text-yellow-400 text-2xl'>{city.toUpperCase()}</h3>
-             <div className='flex flex-row justify-between p-3 m-6'>
+        <div className='flex flex-row justify-between p-3 m-6'>
             {/* Render daily forecast data */}
             {weatherForecast.map((item, index) => (
                 <div className='flex flex-col justify-center hover:border-2 solid p-2 m-1' key={index}>
@@ -24,8 +24,8 @@ const DailyForecast = ({ weatherForecast, getDay, weatherImageMapping ,city }) =
                     <p>{item.weather[0].description}</p>
                 </div>
             ))}
-            </div>
         </div>
-        );
+    </div>
+);
 
-        export default DailyForecast;
+export default DailyForecast;
