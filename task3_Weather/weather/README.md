@@ -1,70 +1,93 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Weather Forecast App
 
-## Available Scripts
+This is a simple weather forecast web application built with React.js. It provides users with hourly and daily weather forecasts for a specific city.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Hourly Forecast**: View weather details for every 3 hours.
+- **Daily Forecast**: View weather details for 5 days.
+- **Search**: Search for weather forecasts by city name.
+- **Responsive Design**: The app is responsive and works well on different screen sizes.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technologies Used
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1) React.js
 
-### `npm test`
+    # Getting Started with Create React App
+    
+    This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+    
+    ## Available Scripts
+    
+    In the project directory, you can run:
+    
+    ### `npm start`
+    
+    Runs the app in the development mode.\
+    Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+    
+2) Axios for HTTP requests
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    # Install axios for get request in this app
+     
+    ###  `npm install axios`
 
-### `npm run build`
+3) OpenWeatherMap API for weather data
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    After signin in this website https://openweathermap.org/ , we got API.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    Create a `.env` file in the root directory and add your OpenWeatherMap API key.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    REACT_APP_OPENWEATHERMAP_API_KEY=your-api-key
 
-### `npm run eject`
+4) Tailwind CSS for styling
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    Please check https://tailwindcss.com/docs/installation for steps to follow
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Getting Started
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+To run this app locally, follow these steps:
 
-## Learn More
+1. Clone this repository to your local machine.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+git clone https://github.com/chandrika-kp/weather-forecast-app.git
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+css
+Copy code
 
-### Code Splitting
+2. Navigate to the project directory.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+cd weather-forecast-app
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+3. Install dependencies using npm or yarn.
 
-### Making a Progressive Web App
+npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+4. Create a `.env` file in the root directory and add your OpenWeatherMap API key.
 
-### Advanced Configuration
+REACT_APP_OPENWEATHERMAP_API_KEY=your-api-key
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+5. Start the development server.
 
-### Deployment
+npm start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+6. Open your browser and navigate to `http://localhost:3000` to view the app.
 
-### `npm run build` fails to minify
+## Usage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Enter a city name in the search input field and press Enter or click the search button.
+- Toggle between hourly and daily forecasts using the buttons at the top.
+- View weather details such as temperature, description, and weather icons.
+
+## Credits
+
+- Icons from [Unicons](https://iconscout.com/unicons) and [OpenWeatherMap](https://openweathermap.org/weather-conditions).
+
+## Extra
+
+If you want to display images based on icons of the obtained data ..see mostly comments of the file `./src/APPInsinglePage.js` 
+
+In that, I used Icons from https://react-icons.github.io/react-icons/ 
