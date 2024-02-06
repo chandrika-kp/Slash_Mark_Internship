@@ -52,15 +52,11 @@ To run this app locally, follow these steps:
 
 1. Clone this repository to your local machine.
 
-git clone https://github.com/chandrika-kp/weather-forecast-app.git
-
-css
-Copy code
+git clone https://github.com/chandrika-kp/Slash_Mark_Internship.git
 
 2. Navigate to the project directory.
 
-cd weather-forecast-app
-
+cd task3_Weather/weather
 
 3. Install dependencies using npm or yarn.
 
