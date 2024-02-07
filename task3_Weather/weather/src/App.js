@@ -63,7 +63,7 @@ function App() {
       // console.log(hourlyForecast)
 
       // Extract daily forecast data (every 8th item in the list)
-      const dailyForecast = response.data.list.filter((index) => index % 8 === 0);
+      const dailyForecast = response.data.list.filter((item, index) => index % 8 === 0);
       setWeatherForecast(dailyForecast);
       // console.log(dailyForecast)
 
