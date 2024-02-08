@@ -52,4 +52,4 @@ URL shorteners are tools that take long URLs and convert them into shorter, more
 
 ## Contributing
 
-Contributions are welcome! Please fork the repository and submit a pull request with y
+Contributions are welcome! Please fork the repository and submit a pull request with your improvements.
