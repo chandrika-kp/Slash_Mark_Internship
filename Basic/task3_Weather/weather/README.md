@@ -56,7 +56,7 @@ git clone https://github.com/chandrika-kp/Slash_Mark_Internship.git
 
 2. Navigate to the project directory.
 
-cd task3_Weather/weather
+cd Basic/task3_Weather/weather
 
 3. Install dependencies using npm or yarn.
 
