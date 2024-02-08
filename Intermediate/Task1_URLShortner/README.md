@@ -28,7 +28,7 @@ URL shorteners are tools that take long URLs and convert them into shorter, more
    `npm install`
 
 3. Connect MongoDB
-    `mongodb://localhost/urlShortener`
+    `mongodb://localhost/urlShortner`
 
 4. Start the server:
     `npm run dev`
