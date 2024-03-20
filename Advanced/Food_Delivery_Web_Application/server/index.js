@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const dotenv = require("dotenv");
+const cookieParser = require('cookie-parser');
 dotenv.config()
 // require("dotenv").config();
 
@@ -10,16 +11,21 @@ dotenv.config()
 require("./DB/connection")
 // require("./models")
 const userRoutes = require("./routes/user.js")
+const foodRouter = require("./routes/foodItemsRoute.js")
 
+// view engine
+app.set('view engine', 'ejs');
 
 app.use(cors({
-    origin:"http://localhost:3000",
+    origin:["http://localhost:3000"],
     methods:"GET,POST,PUT,DELETE",
     credentials:true
 }));
+app.use(cookieParser());
 
 app.use(express.json());
 app.use('/auth', userRoutes);
+app.use('/foodItems', foodRouter);
 
 app.get('/',(req,res)=>{
     res.status(200).json("server is running")

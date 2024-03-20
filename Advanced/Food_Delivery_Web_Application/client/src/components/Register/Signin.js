@@ -1,19 +1,31 @@
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import logo from "../../asset/food_logo.png"
 
 const Signin = () => {
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const navigate = useNavigate();
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:6005/auth/signup/',{
-            userName: userName,
+        axios.post('http://localhost:6005/auth/signup',{
+            username: userName,
             email: email,
             password: password})
-            .then(response => {console.log(response)})
+            .then(response => {
+                console.log(response);
+                if(response.data.status){
+                    navigate('/login');
+                }else{
+                    alert('Already Registered')
+                    navigate('/login')
+                }
+            }
+            )
             .catch((err)=> console.log(err))
     }
     return (
@@ -21,8 +33,8 @@ const Signin = () => {
             <div className="flex  bg-slate-200  min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
-                        className="mx-auto h-10 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                        className="mx-auto h-12 w-auto"
+                        src={logo}
                         alt="Your Company"
                     />
                     <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">

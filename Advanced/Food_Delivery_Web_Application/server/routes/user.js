@@ -1,25 +1,84 @@
 const express = require("express");
 const bcrypt = require('bcrypt');
 const UserModel = require("../models/userModel");
+const userController = require('../controllers/userController')
+const jwt = require("jsonwebtoken");
+require('dotenv').config();
 
 const router = express.Router();
 
-router.post('/signup', async (req,res) => {
-    const {username, email, password} = req.body;
-    const user = UserModel.find({email});
-    if(user){
-        return res.json({message: "user already existed"})
+router.post('/signup', async (req, res) => {
+    const { username, email, password } = req.body;
+    const user = await UserModel.findOne({ email });
+    if (user) {
+        return res.json({ message: "Email already existed" })
     }
-    const hashpassword = await bcrypt.hash(password,10)
-    const newUser = new User({
+    // Hash the password
+    const salt = await bcrypt.genSalt();
+    const hashPassword = await bcrypt.hash(password, salt);
+
+    const newUser = new UserModel({
         username,
         email,
-        password:hashpassword,
+        password: hashPassword,
 
-    })
+    });
 
     await newUser.save()
-    return res.json({message: "Registered"})
+    
+    return res.json({ status: true, message: "Registered" })
 })
 
+
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+    const user = await UserModel.findOne({ email });
+    if (!user) {
+        return res.json({ message: "user is not registered" })
+    }
+    // else{
+    // return res.json({message: "user already existed"})
+
+    // }
+    const validpassword = await bcrypt.compare(password, user.password)
+    if (!validpassword) {
+        return res.json({ message: "Incorrect Password" })
+    }
+    const token = jwt.sign({ username: user.username }, process.env.JWTKEY, { expiresIn: '1m' })
+    res.cookie('token', token, { httpOnly: true, maxAge: 360000 })
+    return res.json({ status: true, message: "Login sucessfully",username: user.username })
+
+})
+
+const verifyUser = (req, res, next) => {
+    try {
+        const token = req.cookies.token; 
+        if (!token) {
+            return res.status(401).json({ status: false, message: "No token provided" });
+        }
+        let decoded = jwt.verify(token, process.env.JWTKEY);
+        req.user = decoded; // Attach decoded user information to request object
+        next();
+        // jwt.verify(token,  process.env.JWTKEY, (err,decoded ) => {
+        //     if (err) {
+        //         return res.status(401).json({ status: false, message: "Invalid or expired token" });
+        //     } else {
+                
+        //     }
+        // });
+    } catch (err) {
+        return res.status(401).json({ status: false, message: "Invalid or expired token" });
+    }
+};
+
+router.get('/verify', verifyUser, (req, res) => {
+    return res.json({ status: true, message: "Authorized" }); // Update response message
+});
+
+// router.get('/logout', (req, res) => {
+//     res.clearCookie('token');
+//     return res.json({ status: true, message: "Logout successful" }); // Update response message
+// });
+
+router.get('/signup',userController.signup_get);
 module.exports = router;

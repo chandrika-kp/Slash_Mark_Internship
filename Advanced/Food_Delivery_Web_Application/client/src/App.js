@@ -6,17 +6,21 @@ import Login from './components/Pages/Login';
 import Dashboard from './components/Pages/Dashboard';
 import Error from './components/Pages/Error';
 import Signin from './components/Register/Signin';
+import Logout from './components/Pages/Logout';
+import Menu from './components/Pages/Menu';
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Header />
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/header' element={<Header />} />
           <Route path='/login' element={<Login/>} />
+          <Route path='/logout' element={<Logout/>} />
           <Route path='/signup' element={<Signin/>} />
           <Route path='/dashboard' element={<Dashboard/>} />
+          <Route path='/menu' element={<Menu/>} />
           <Route path='*' element={<Error/>} />
         </Routes>
       </BrowserRouter>

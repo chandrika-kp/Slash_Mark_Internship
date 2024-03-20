@@ -11,3 +11,5 @@ npm i bcrypt jsonwebtoken cookie-parser
 
   // "type":"module",
 import express from 'express'
+
+npm i ejs 

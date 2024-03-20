@@ -77,3 +77,13 @@ npm i react-router-dom
 npm install -D tailwindcss
 
 npm i axios
+
+npm i redux react-redux
+
+npm i redux-thunk 
+
+npm i react-loading-skeleton
+
+<!-- npm i bootstrap -->
+
+npm i react-icons
