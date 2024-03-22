@@ -1,34 +1,44 @@
 import React, { useEffect } from 'react'
 import img from '../../asset/food_logo.png'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Header from './Header';
+import { userDetails as fetchUserDetails } from '../../redux/Actions/action';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Dashboard = () => {
-  const location = useLocation();
 
-  const username = location.state ? location.state.username : null;
-  console.log("Location state:", location.state);
+  const dispatch = useDispatch();
+
+  // const location = useLocation();
+  // const username = location.state ? location.state.username : null;
+  // console.log("Location state:", location.state);
+
+  const userDetails = useSelector((state) => state.userdata);
   const navigate = useNavigate();
 
   axios.defaults.withCredentials = true;
   useEffect(() => {
-    axios.get('http://localhost:3000/auth/verify')
+    dispatch(fetchUserDetails());
+    axios.get('http://localhost:6005/auth/verify')
       .then(res => {
-        if (res.data.status) {
-        } else {
+        console.log(res)
+        if (!res.data.status) {
           navigate('/');
         }
       })
       .catch(error => {
         console.error('Error verifying user:', error);
-        // navigate('/');
+        navigate('/');
       });
   }, []);
 
+  // console.log(userDetails);
+
+
   return (
     <>
-      {<Header username={username.toString()} />}
+      {<Header username={userDetails ? userDetails : ''} />}
       <div className="container mx-auto">
         {/* <p className='text-black'>Welcome to the website, {username}!</p> */}
         <img src={img} alt="Food Logo" />

@@ -1,15 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchItems } from '../../redux/Actions/action';
+import { fetchItems, userDetails as fetchUserDetails } from '../../redux/Actions/action';
+import axios from 'axios';
+import Header from './Header';
+import { useNavigate } from 'react-router-dom';
 
 const Menu = () => {
-    
+
     const dispatch = useDispatch();
     const foodItems = useSelector((state) => state.itemsList);
+    const userDetails = useSelector((state) => state.userdata);
     const [selectedCategory, setSelectedCategory] = useState("");
 
+    const navigate = useNavigate();
+    axios.defaults.withCredentials = true;
     useEffect(() => {
-        dispatch(fetchItems());
+
+        axios.get('http://localhost:6005/auth/verify')
+            .then(res => {
+                if (res.data.status) {
+                    dispatch(fetchItems());
+                    dispatch(fetchUserDetails());
+                } else {
+                    navigate('/');
+
+                }
+            })
+            .catch(error => {
+                console.error('Error verifying user:', error);
+                navigate('/');
+            });
     }, [dispatch]);
 
     // Function to get unique categories from food items
@@ -18,8 +38,11 @@ const Menu = () => {
         return [...new Set(categories)];
     };
 
+    console.log(userDetails);
+
     return (
         <>
+            {<Header username={userDetails ? userDetails : ''} />}
             <div className="container">
                 <div className='sideBlock'>
                     <h3 className='text-center'>Filter</h3>
@@ -49,7 +72,7 @@ const Menu = () => {
                                             <p>{item.desc}</p>
                                             <p className="mt-1 text-lg font-medium text-gray-900">Price: ${item.price}</p>
                                             {/* Render other details of the item */}
-                                            <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                                            <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
                                                 Add to cart</button>
                                         </a>
                                     );

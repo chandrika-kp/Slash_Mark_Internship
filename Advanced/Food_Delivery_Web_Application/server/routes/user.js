@@ -44,15 +44,16 @@ router.post('/login', async (req, res) => {
     if (!validpassword) {
         return res.json({ message: "Incorrect Password" })
     }
-    const token = jwt.sign({ username: user.username }, process.env.JWTKEY, { expiresIn: '1m' })
-    res.cookie('token', token, { httpOnly: true, maxAge: 360000 })
+    const token = jwt.sign({ username: user.username }, process.env.JWTKEY, { expiresIn: '1h' })
+    res.cookie('token', token, { httpOnly: true, maxAge: 3600000  })
     return res.json({ status: true, message: "Login sucessfully",username: user.username })
 
 })
 
 const verifyUser = (req, res, next) => {
     try {
-        const token = req.cookies.token; 
+        const token = req.cookies.token;
+        // console.log(token)
         if (!token) {
             return res.status(401).json({ status: false, message: "No token provided" });
         }
@@ -72,13 +73,20 @@ const verifyUser = (req, res, next) => {
 };
 
 router.get('/verify', verifyUser, (req, res) => {
-    return res.json({ status: true, message: "Authorized" }); // Update response message
+    const userData = req.user;
+    return res.json({ status: true, message: "Authorized" ,user:userData}); 
 });
 
-// router.get('/logout', (req, res) => {
-//     res.clearCookie('token');
-//     return res.json({ status: true, message: "Logout successful" }); // Update response message
-// });
+router.get('/logout', (req, res) => {
+    try {
+        // Clear the 'token' cookie
+        res.clearCookie('token');
+        return res.json({ status: true, message: "Logout successful" }); 
+    } catch (error) {
+        console.error('Logout failed:', error);
+        return res.status(500).json({ status: false, message: 'Logout failed. Please try again later.' });
+    }
+});
 
 router.get('/signup',userController.signup_get);
 module.exports = router;

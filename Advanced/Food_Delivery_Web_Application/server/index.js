@@ -1,14 +1,15 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const dotenv = require("dotenv");
 const cookieParser = require('cookie-parser');
+
+const dotenv = require("dotenv");
 dotenv.config()
 // require("dotenv").config();
 
-
 // Mongoose connection
 require("./DB/connection")
+
 // require("./models")
 const userRoutes = require("./routes/user.js")
 const foodRouter = require("./routes/foodItemsRoute.js")
@@ -22,7 +23,6 @@ app.use(cors({
     credentials:true
 }));
 app.use(cookieParser());
-
 app.use(express.json());
 app.use('/auth', userRoutes);
 app.use('/foodItems', foodRouter);

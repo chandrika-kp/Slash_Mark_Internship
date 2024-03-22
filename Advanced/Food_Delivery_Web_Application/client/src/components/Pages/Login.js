@@ -7,7 +7,6 @@ import logo from "../../asset/food_logo.png";
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [username, setUsername] = useState('');
 
     const navigate = useNavigate();
 
@@ -23,8 +22,12 @@ const Login = () => {
                 console.log(response);
                 // console.log(response.data.username);
                 if (response.data.status) {
-                    setUsername(response.data.username);
-                    navigate('/dashboard', { state: { username: response.data.username } });
+                    // used useLocation hook for 'username' in Dashboard.js
+                    // navigate('/dashboard', { state: { username: response.data.username } });
+                    navigate('/dashboard');
+                } else {
+                    // Handle invalid credentials or non-existent account
+                    alert('Invalid credentials. Please try again.');
                 }
             }
             )
@@ -59,13 +62,13 @@ const Login = () => {
                                     autoComplete="email"
                                     required
                                     className="block w-full pl-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    onChange={(e)=>setEmail(e.target.value)}
+                                    onChange={(e) => setEmail(e.target.value)}
                                 />
                             </div>
                         </div>
 
                         <div>
-                        <div className="flex items-center justify-between">
+                            <div className="flex items-center justify-between">
                                 <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                                     Password
                                 </label>
@@ -81,10 +84,9 @@ const Login = () => {
                                     name="password"
                                     type="password"
                                     placeholder='  * * * * * *'
-                                    // autoComplete="current-password"
                                     required
                                     className="block w-full rounded-md border-0 pl-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    onChange={(e)=> setPassword(e.target.value)}
+                                    onChange={(e) => setPassword(e.target.value)}
 
                                 />
                             </div>

@@ -24,7 +24,7 @@ const Header = (username) => {
                             <NavLink to="/contact">Contact</NavLink>
                         </div>
                         <div className="flex flex-wrap items-center justify-between space-x-6 pr-4">
-                            <p>WELCOME , {username.username.toUpperCase()}</p>
+                            <p>WELCOME , {username.username}</p>
                             <NavLink to="/cart">Cart</NavLink>
                             <NavLink to="/logout">Logout</NavLink>
                         </div>

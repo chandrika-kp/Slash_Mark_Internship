@@ -4,21 +4,21 @@ import { NavLink, useNavigate } from 'react-router-dom';
 
 const Logout = () => {
     const navigate = useNavigate();
-    // axios.defaults.withCredentials = true;
+    axios.defaults.withCredentials = true;
 
     const HandleLogOut = () => {
-        navigate('/');
-        alert('logged out sucessfully')
-        // axios.get('http://localhost:3000/auth/logout')
-        // .then(res =>{
-        //     if(res.data.status){
-        //         navigate('/');
-        //     }
-        // })
-        // .catch(error => {
-        //     console.error('Logout failed:', error);
-        //     // Handle logout error (e.g., show error message to user)
-        // });
+        axios.get('http://localhost:6005/auth/logout')
+        .then(response =>{
+            console.log(response);
+            if(response.data.status){
+                alert('logged out sucessfully')
+                navigate('/');
+            }
+        })
+        .catch(error => {
+            console.error('Logout failed:', error);
+            // Handle logout error (e.g., show error message to user)
+        });
     }
 
     return (
