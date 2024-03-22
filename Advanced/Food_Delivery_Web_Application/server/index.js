@@ -18,16 +18,16 @@ const foodRouter = require("./routes/foodItemsRoute.js")
 app.set('view engine', 'ejs');
 
 app.use(cors({
-    origin:["http://localhost:3000"],
-    methods:"GET,POST,PUT,DELETE",
-    credentials:true
+    origin: ["http://localhost:3000"],
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true
 }));
 app.use(cookieParser());
 app.use(express.json());
 app.use('/auth', userRoutes);
 app.use('/foodItems', foodRouter);
 
-app.get('/',(req,res)=>{
+app.get('/', (req, res) => {
     res.status(200).json("server is running")
 });
 
