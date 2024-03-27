@@ -15,4 +15,21 @@ router.get('/', async (req, res) => {
     }
 });
 
+// Route to fetch a specific food item by its ID
+router.get('/:id', async (req, res) => {
+    try {
+        const id = req.params;
+        const foodItem = await FoodItemsModel.findOne(id);
+        console.log(foodItem)
+        // Find the food item by its ID
+        if (!foodItem) {
+            return res.status(404).json({ message: 'Food item not found' });
+        }
+        res.json(foodItem);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
+});
+
 module.exports = router;

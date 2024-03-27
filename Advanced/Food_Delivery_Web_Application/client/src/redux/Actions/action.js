@@ -24,3 +24,21 @@ export const userDetails = () => {
     }
   };
 };
+export const addToCart = (item) => {
+  return (dispatch) => {
+    try {
+      dispatch({ type: 'ADD_TO_CART', payload: item });
+      console.log(item)
+    } catch (error) {
+      console.error('Error adding item to cart:', error);
+    }
+  };
+};
+
+export const removeFromCart = (item) =>{
+  return{
+      type:"REMOVE_FROM_CART",
+      payload: item,
+  };
+};
+

@@ -8,6 +8,8 @@ import Error from './components/Pages/Error';
 import Signin from './components/Register/Signin';
 import Logout from './components/Pages/Logout';
 import Menu from './components/Pages/Menu';
+import MenuItems from './components/Pages/MenuItems';
+import Cart from './components/Pages/Cart.js';
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path='/signup' element={<Signin/>} />
           <Route path='/dashboard' element={<Dashboard/>} />
           <Route path='/menu' element={<Menu/>} />
+          <Route path='/menu/:id' element={<MenuItems/>} />
+          <Route path='/cart' element={<Cart/>} />
           <Route path='*' element={<Error/>} />
         </Routes>
       </BrowserRouter>

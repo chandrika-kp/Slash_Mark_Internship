@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchItems, userDetails as fetchUserDetails } from '../../redux/Actions/action';
 import axios from 'axios';
 import Header from './Header';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Menu = () => {
 
@@ -23,7 +23,6 @@ const Menu = () => {
                     dispatch(fetchUserDetails());
                 } else {
                     navigate('/');
-
                 }
             })
             .catch(error => {
@@ -39,6 +38,7 @@ const Menu = () => {
     };
 
     console.log(userDetails);
+    console.log(foodItems)
 
     return (
         <>
@@ -71,9 +71,10 @@ const Menu = () => {
                                             <h3 className="mt-4 text-sm text-gray-700">{item.name}</h3>
                                             <p>{item.desc}</p>
                                             <p className="mt-1 text-lg font-medium text-gray-900">Price: ${item.price}</p>
-                                            {/* Render other details of the item */}
-                                            <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                                                Add to cart</button>
+                                            <button className="bg-transparent hover:bg-orange-500 text-orange-700 font-semibold hover:text-white py-2 px-4 border border-orange-500 hover:border-transparent rounded">
+                                            <NavLink to={`/menu/${item.id}`} className="btn btn-outline-dark">Order Now</NavLink></button>
+                                            
+
                                         </a>
                                     );
                                 } else {
@@ -88,7 +89,5 @@ const Menu = () => {
         </>
     );
 };
-
-
 
 export default Menu;
