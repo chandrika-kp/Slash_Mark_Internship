@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import img from '../../asset/food_logo.png';
 import { NavLink } from 'react-router-dom';
+import { FaCartShopping } from 'react-icons/fa6';
+import { CgMenuGridR, CgProfile } from "react-icons/cg";
+import { MdRestaurantMenu } from "react-icons/md";
+import { useSelector } from 'react-redux';
 
 const Header = (username) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const cartItems = useSelector((state) => state.cartItems);
+
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -12,34 +18,46 @@ const Header = (username) => {
     return (
         <>
             <nav id='header' className='bg-white text-black border-red-200'>
-                <div className='w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2'>
+                <div className='container flex flex-wrap items-center justify-between mt-0 py-2 sm:flex '>
                     <div className="logo-Wrapper pl-10 flex-none items-center">
                         <img src={img} alt="Food Logo" className='w-30 h-20' />
                     </div>
-                    <div className={`nav-menu-wrapper ${isMenuOpen ? 'block' : 'hidden'} flex justify-around grow pr-4 md:flex flex-wrap items-center space-x-6`}>
-                        <div className="flex flex-wrap items-center justify-between space-x-6 pr-4">
-                            <NavLink to="/">Home</NavLink>
-                            <NavLink to="/about">About</NavLink>
-                            <NavLink to="/menu">Menu</NavLink>
-                            <NavLink to="/contact">Contact</NavLink>
+                    <div className={`nav-menu-wrapper ${isMenuOpen ? 'block' : 'hidden'} flex justify-around grow pr-4 md:flex flex-wrap items-center space-x-6 `}>
+                        <div className="flex flex-wrap items-center justify-between space-x-6 pl-4 ">
+                            <NavLink className='navlink' to="/">Home</NavLink>
+                            <NavLink className='navlink' to="/about">About</NavLink>
+                            <NavLink className='navlink' to="/menu">Menu</NavLink>
+                            <NavLink className='navlink' to="/contact">Contact</NavLink>
                         </div>
                         <div className="flex flex-wrap items-center justify-between space-x-6 pr-4">
-                            <p>WELCOME , {username.username}</p>
-                            <NavLink to="/cart">Cart</NavLink>
-                            <NavLink to="/logout">Logout</NavLink>
+
+                            <div className='flex justify-center md:flex'>
+
+                                <p className='btn text-3xl p-0 border-none hover:rounded-full'><CgProfile /> </p>
+                                <p className='font-semibold'>{username.username}</p>
+                            </div>
+
+                            <NavLink className='pb-2 navlink' to="/logout">Logout</NavLink>
+                            <div className='flex justify-center'>
+
+                                <NavLink className='navlink btn rounded-full' to="/cart"><FaCartShopping /></NavLink>
+                                <sup className='text-xl text-orange-600 font-bold hover:text-2xl'>{cartItems.length}</sup>
+                            </div>
                         </div>
+
                     </div>
                     <div className="block md:hidden" onClick={toggleMenu}>
                         {isMenuOpen ? (
-                            <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                            </svg>
+                            <p className='text-4xl text-orange-600 hover:text-close'>
+                                <MdRestaurantMenu />
+                            </p>
                         ) : (
-                            <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
-                            </svg>
+                            <p className='text-4xl'>
+                            <CgMenuGridR />
+                            </p>
                         )}
                     </div>
+
                 </div>
             </nav>
         </>

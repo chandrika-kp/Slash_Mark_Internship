@@ -1,7 +1,7 @@
 const initialState = {
   itemsList: [],
   userdata: [],
-  addToCart: []
+  cartItems: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -19,13 +19,30 @@ const reducer = (state = initialState, action) => {
 
     case "ADD_TO_CART":
       console.log(action.payload);
+      const addQuantity = { ...action.payload, quantity: 1 };
       return {
-        ...state, addToCart: [...state.addToCart, action.payload]
+        ...state, cartItems: [...state.cartItems, addQuantity]
 
       };
     case "REMOVE_FROM_CART":
-      return state = state.addToCart.filter((x) => { return x.id !== action.payload.id })
-
+      return {
+        ...state,
+        cartItems: state.cartItems.filter((item) => item.id !== action.payload.id)
+      }
+    case "INCREASE_QUANTITY":
+      return {
+        ...state,
+        cartItems: state.cartItems.map(item =>
+          item.id === action.payload.id ? { ...item, quantity: item.quantity + 1 } : item
+        )
+      };
+    case "DECREASE_QUANTITY":
+      return {
+        ...state,
+        cartItems: state.cartItems.map(item =>
+          item.id === action.payload.id && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item
+        )
+      };
     default:
       return state;
   }

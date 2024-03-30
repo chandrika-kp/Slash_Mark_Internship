@@ -1,15 +1,16 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
 }
-/* body{
-  overflow: hidden;
-} */
+body{
+  /* overflow: hidden; */
+  min-width: 450px;
+
+}
 #root{
   height: 100%;
 }
@@ -17,3 +18,28 @@
   height: 100vh;
   background-color: black;
 }
+.btn {
+  background-color: transparent;
+  /* margin:0 0.75rem; */
+  color:rgb(194 65 12 /1); 
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem;
+  border: 1px solid; 
+  border-color: rgb(249 115 22 / 1); 
+  border-radius: 0.25rem; 
+}
+
+.btn:hover {
+  background-color: rgb(249 115 22 /1);
+  color: #FFFFFF;
+  border-color: transparent;
+}
+.navlink{
+  font-weight: 600;
+}
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

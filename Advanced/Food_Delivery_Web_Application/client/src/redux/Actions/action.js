@@ -42,3 +42,17 @@ export const removeFromCart = (item) =>{
   };
 };
 
+export const increaseQuantity = (item) => {
+  return {
+      type: "INCREASE_QUANTITY",
+      payload: item
+  };
+};
+
+export const decreaseQuantity = (item) => {
+  return {
+      type: "DECREASE_QUANTITY",
+      payload: item
+  };
+};
+

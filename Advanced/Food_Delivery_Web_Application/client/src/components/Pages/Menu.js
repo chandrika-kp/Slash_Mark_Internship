@@ -44,19 +44,21 @@ const Menu = () => {
         <>
             {<Header username={userDetails ? userDetails : ''} />}
             <div className="container">
-                <div className='sideBlock'>
-                    <h3 className='text-center'>Filter</h3>
-                    <p>Select Category:</p>
-                    <select style={{ width: '85%' }} onChange={e => setSelectedCategory(e.target.value)}>
-                        <option value="">All</option>
+                <div className='sideBlock mx-5'>
+                    <h3 className='text-center p-3 rounded-full bg-orange-300 text-white'>Filter</h3>
+                    <hr className="my-4" />
+                    
+                    <p className='font-bold text-2xl m-4 '>Select Category:</p>
+                    <select className='text-sxl w-40 bg-orange-100 py-3 m-4 mb-0 rounded-xl border-2 border-orange-600' onChange={e => setSelectedCategory(e.target.value)}>
+                        <option className=' bg-orange-600 p-2 m-2 rounded-xl border-2 border-orange-600' value="">All</option>
                         {/* Map over unique categories */}
                         {getUniqueCategories(foodItems).map((category) => (
-                            <option key={category} value={category}>{category}</option>
+                            <option className=' p-3 m-4 rounded-xl border-2 border-orange-600' key={category} value={category}>{category}</option>
                         ))}
                     </select>
                 </div>
-                <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-                    <h1 className='"sr-only"'>Menu</h1>
+                <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:pb-24 lg:max-w-7xl lg:px-8">
+                    <h1 className='text-3xl mb-4 text-center underline'>Menu</h1>
                     {foodItems.length === 0 ? (
                         <p className='NoMatch text-center fs-3 m-1'>No items found</p>
                     ) : (
@@ -64,16 +66,16 @@ const Menu = () => {
                             {foodItems.map((item) => {
                                 if (selectedCategory === "" || item.category === selectedCategory) {
                                     return (
-                                        <a key={item.id} className="group">
-                                            <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+                                        <a key={item.id} className="group h-200 border-2 border-orange-300 p-3 rounded-xl">
+                                            <div className="h-30 w-30 overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
                                                 <img className='h-30 w-auto object-cover object-center group-hover:opacity-75' src={item.img} alt={item.name} />
                                             </div>
                                             <h3 className="mt-4 text-sm text-gray-700">{item.name}</h3>
                                             <p>{item.desc}</p>
                                             <p className="mt-1 text-lg font-medium text-gray-900">Price: ${item.price}</p>
-                                            <button className="bg-transparent hover:bg-orange-500 text-orange-700 font-semibold hover:text-white py-2 px-4 border border-orange-500 hover:border-transparent rounded">
-                                            <NavLink to={`/menu/${item.id}`} className="btn btn-outline-dark">Order Now</NavLink></button>
-                                            
+                                            <button className='btn'>
+                                                <NavLink to={`/menu/${item.id}`} >Order Now</NavLink></button>
+
 
                                         </a>
                                     );

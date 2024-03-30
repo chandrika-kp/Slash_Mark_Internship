@@ -37,12 +37,12 @@ const Logout = () => {
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                     <button
                         type="button"
-                        className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        className="flex w-full justify-center rounded-md bg-orange-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
                         onClick={HandleLogOut}
                     >
                         Logout
                     </button>
-                    <p className='py-4'>Do you want to login? <NavLink to="/login" className="font-semibold underline px-4 text-indigo-600 hover:text-indigo-500">Login</NavLink></p>
+                    <p className='py-4'>Do you want to login? <NavLink to="/login" className="font-semibold underline px-4 text-orange-600 hover:text-orange-500">Login</NavLink></p>
                 </div>
             </div>
         </>
