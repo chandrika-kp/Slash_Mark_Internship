@@ -30,7 +30,7 @@ const Signin = () => {
     }
     return (
         <>
-            <div className="flex  bg-slate-200  min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+            <div className="flex h-dvh bg-slate-200  min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
                         className="mx-auto h-12 w-auto"
@@ -55,7 +55,7 @@ const Signin = () => {
                                     type="name"
                                     autoComplete="name"
                                     required
-                                    className="block w-full pl-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6"
+                                    className="block w-full pl-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6 outline-none"
                                     onChange={(e)=> setUserName(e.target.value)}
                                 />
                             </div>
@@ -72,7 +72,7 @@ const Signin = () => {
                                     type="email"
                                     autoComplete="email"
                                     required
-                                    className="block w-full pl-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6"
+                                    className="block w-full pl-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6 outline-none"
                                     onChange={(e)=> setEmail(e.target.value)}
 
                                 />
@@ -98,7 +98,7 @@ const Signin = () => {
                                     placeholder='  * * * * * *'
                                     // autoComplete="current-password"
                                     required
-                                    className="block w-full rounded-md border-0 pl-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-0 pl-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6 outline-none"
                                     onChange={(e)=> setPassword(e.target.value)}
 
                                 />

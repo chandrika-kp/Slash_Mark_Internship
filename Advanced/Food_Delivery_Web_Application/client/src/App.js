@@ -11,6 +11,7 @@ import Menu from './components/Pages/Menu';
 import MenuItems from './components/Pages/MenuItems';
 import Cart from './components/Pages/Cart.js';
 import Checkout from './components/Pages/Checkout.js';
+import Footer from './components/Pages/Footer.js';
 
 function App() {
   return (
@@ -27,9 +28,11 @@ function App() {
           <Route path='/menu/:id' element={<MenuItems/>} />
           <Route path='/cart' element={<Cart/>} />
           <Route path='/checkout' element={<Checkout/>} />
+          {/* <Route path='/footer' element={<Footer/>} /> */}
           <Route path='*' element={<Error/>} />
         </Routes>
       </BrowserRouter>
+      <Footer/>
     </>
   );
 }

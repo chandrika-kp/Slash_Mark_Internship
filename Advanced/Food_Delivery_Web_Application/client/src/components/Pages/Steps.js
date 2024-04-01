@@ -1,11 +1,12 @@
 import React from 'react'
+import img1 from '../../asset/1.png'
 
 const stepsData = {
     step1: {
         title: 'Create an account',
-        heading: 'Create/login to an existing account to get started',
+        heading: 'Register/login to an existing account to get started',
         description: 'An account is created with your email and a desired password',
-        img: "https://tailwind-landing-page.netlify.app/static/media/Rectangle_3.2ca0ade5.png",
+        img: img1,
         alternate: false,
     },
     step2: {
