@@ -1,18 +1,22 @@
 import React from 'react'
+import img1 from '../../asset/img1.jpg';
+import img2 from '../../asset/img2.jpg';
 const heroData = {
     top: {
         appType: 'Food app',
-        tagLine: 'Why stay hungry when you can order from Bella Onojie',
-        description: 'Download the chandu’s food app now on',
-        mainActionText: 'Playstore',
-        extraActionText: 'App Store',
+        tagLine: "Why stay hungry when you can order from Chandu's Food",
+        description: 'Tasty items available now in chandu’s food ',
+        mainActionText: 'Register',
+        extraActionText: 'Login',
+        backgroundImage: img1
     },
     bottom: {
         appType: 'Food app',
         tagLine: 'Download the app now.',
-        description: 'Available on your favourite store. Start your premium experience now.',
+        description: 'Available on your favourite store. Start your experience now.',
         mainActionText: 'Playstore',
         extraActionText: 'App Store',
+        backgroundImage: img2
     }
 };
 
@@ -22,7 +26,7 @@ const Hero = (heroData) => {
             {Object.entries(heroData).map(([key, values]) => (
 
                 <div key={key}>
-                    <div style={{ textShadow: '0px 1px 1px gray' }} className="flex flex-col items-center justify-start font-sans min-h-96 bg-gray-50 lg:pt-10 lg:pb-20 lg:bg-hero lg:bg-cover">
+                    <div style={{ textShadow: '0px 1px 1px gray', backgroundImage: `url(${values.backgroundImage})` }} className="flex flex-col items-center justify-start font-sans min-h-96 bg-gray-50 lg:pt-10 lg:pb-20 lg:bg-hero lg:bg-cover">
                         <div>
                             <p className="p-3 pt-12 text-lg font-bold text-gray-500 lg:text-gray-300">{values.appType}</p>
                         </div>

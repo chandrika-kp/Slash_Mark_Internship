@@ -32,4 +32,17 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+// 
+router.post('/', async (req, res) => {
+    const { id,img, name, price, desc ,category,rating} = req.body;
+
+    const newItem = new FoodItemsModel({
+        id,img, name, price, desc ,category,rating,
+    });
+
+    await newItem.save()
+
+    return res.json({ status: true, message: "Item added" })
+})
+
 module.exports = router;

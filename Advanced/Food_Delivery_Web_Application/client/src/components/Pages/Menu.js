@@ -75,8 +75,6 @@ const Menu = () => {
                                             <p className="mt-1 text-lg font-medium text-gray-900">Price: ${item.price}</p>
                                             <button className='btn'>
                                                 <NavLink to={`/menu/${item.id}`} >Order Now</NavLink></button>
-
-
                                         </a>
                                     );
                                 } else {

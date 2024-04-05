@@ -24,6 +24,18 @@ export const userDetails = () => {
     }
   };
 };
+
+export const allUserDetails = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get('http://localhost:6005/auth/usersList');
+      console.log(response.data);
+      dispatch({ type: 'FETCH_ALLUSERS', payload: response.data });
+    } catch (error) {
+      console.error('Error fetching All users:', error);
+    }
+  };
+};
 export const addToCart = (item) => {
   return (dispatch) => {
     try {

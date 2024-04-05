@@ -4,6 +4,8 @@ import axios from 'axios';
 import logo from "../../asset/food_logo.png"
 
 const Signin = () => {
+    const [userType, setUserType] = useState('');
+    const [secretKey, setSecretKey] = useState('');
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -11,26 +13,32 @@ const Signin = () => {
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
+        if (userType === 'admin' && secretKey !== 'Chandu') {
+            e.preventDefault();
+            alert('Invalid Admin')
+        }
         e.preventDefault();
-        axios.post('http://localhost:6005/auth/signup',{
+        axios.post('http://localhost:6005/auth/signup', {
             username: userName,
             email: email,
-            password: password})
+            password: password,
+            userType: userType
+        })
             .then(response => {
                 console.log(response);
-                if(response.data.status){
+                if (response.data.status) {
                     navigate('/login');
-                }else{
+                } else {
                     alert('Already Registered')
                     navigate('/login')
                 }
             }
             )
-            .catch((err)=> console.log(err))
+            .catch((err) => console.log(err))
     }
     return (
         <>
-            <div className="flex h-dvh bg-slate-200  min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+            <div className="flex bg-slate-200  min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 h-auto">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
                         className="mx-auto h-12 w-auto"
@@ -40,11 +48,34 @@ const Signin = () => {
                     <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                         SignUp to your account
                     </h2>
+                    <div className="block text-sm font-medium leading-6 text-gray-900">
+                        Register As
+                        <input className='ml-4 mt-4' type="radio" name="userType" id="user" value='user' onChange={(e) => setUserType(e.target.value)} />User
+                        <input className='ml-4 mt-4' type="radio" name="userType" id="admin" value='admin' onChange={(e) => setUserType(e.target.value)} />Admin
+                    </div>
                 </div>
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                     <form className="space-y-6" action="#" onSubmit={handleSubmit}>
-                    <div>
+                        {userType === 'admin' ? (
+                            <div>
+                                <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
+                                    Secret Key
+                                </label>
+                                <div className="mt-2">
+                                    <input
+                                        id="name"
+                                        name="name"
+                                        type="name"
+                                        required
+                                        className="block w-full pl-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6 outline-none"
+                                        onChange={(e) => setSecretKey(e.target.value)}
+                                    />
+                                </div>
+                            </div>
+                        ) : null
+                        }
+                        <div>
                             <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
                                 UserName
                             </label>
@@ -56,11 +87,11 @@ const Signin = () => {
                                     autoComplete="name"
                                     required
                                     className="block w-full pl-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6 outline-none"
-                                    onChange={(e)=> setUserName(e.target.value)}
+                                    onChange={(e) => setUserName(e.target.value)}
                                 />
                             </div>
                         </div>
-                        
+
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                                 Email address
@@ -73,7 +104,7 @@ const Signin = () => {
                                     autoComplete="email"
                                     required
                                     className="block w-full pl-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6 outline-none"
-                                    onChange={(e)=> setEmail(e.target.value)}
+                                    onChange={(e) => setEmail(e.target.value)}
 
                                 />
                             </div>
@@ -99,7 +130,7 @@ const Signin = () => {
                                     // autoComplete="current-password"
                                     required
                                     className="block w-full rounded-md border-0 pl-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6 outline-none"
-                                    onChange={(e)=> setPassword(e.target.value)}
+                                    onChange={(e) => setPassword(e.target.value)}
 
                                 />
                             </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Header from './Header';
+import { useNavigate } from 'react-router-dom';
 
 const Checkout = () => {
     const userDetails = useSelector((state) => state.userdata);
@@ -8,6 +9,7 @@ const Checkout = () => {
 
     const subtotal = cartItems.map((item) => (item.price * item.quantity));
     const total = subtotal.reduce((acc, curr) => acc + curr, 0);
+    const navigate = useNavigate();
 
     return (<>
         <Header username={userDetails ? userDetails : ''} />
@@ -216,7 +218,7 @@ const Checkout = () => {
                         </div>
                     </div>
                     <hr className="my-4" />
-                    <button className="w-full btn btn-dark btn-lg" type="submit" onClick={() => alert("Your order Placed...Enjoy Food")}>Continue to checkout</button>
+                    <button className="w-full btn btn-dark btn-lg" type="submit" onClick={(e) => {e.preventDefault();navigate('/'); alert("Your order Placed...Enjoy Food")}}>Continue to checkout</button>
                 </form>
             </div>
 

@@ -25,9 +25,9 @@ const Header = (username) => {
                     <div className={`nav-menu-wrapper ${isMenuOpen ? 'block' : 'hidden'} flex justify-around grow pr-4 md:flex flex-wrap items-center space-x-6 `}>
                         <div className="flex flex-wrap items-center justify-between space-x-6 pl-4 ">
                             {/* <NavLink className='navlink' to="/">Home</NavLink> */}
-                            <NavLink className='navlink' to="/about">About</NavLink>
+                            <NavLink className='navlink' to="/dashboard">About</NavLink>
                             <NavLink className='navlink' to="/menu">Menu</NavLink>
-                            <NavLink className='navlink' to="/contact">Contact</NavLink>
+                            <NavLink className='navlink' to="/footer">Contact</NavLink>
                         </div>
                         <div className="flex flex-wrap items-center justify-between space-x-6 pr-4">
 

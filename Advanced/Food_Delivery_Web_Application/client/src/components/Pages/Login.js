@@ -21,10 +21,15 @@ const Login = () => {
             .then(response => {
                 console.log(response);
                 // console.log(response.data.username);
-                if (response.data.status) {
-                    // used useLocation hook for 'username' in Dashboard.js
-                    // navigate('/dashboard', { state: { username: response.data.username } });
-                    navigate('/dashboard');
+                if (response.data.status){
+                    if(response.data.type === 'admin') {
+                        navigate('/admin')
+                    }else{
+
+                        // used useLocation hook for 'username' in Dashboard.js
+                        // navigate('/dashboard', { state: { username: response.data.username } });
+                        navigate('/dashboard');
+                    }
                 } else {
                     // Handle invalid credentials or non-existent account
                     alert('Invalid credentials. Please try again.');

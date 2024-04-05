@@ -13,14 +13,14 @@ const stepsData = {
         title: 'Explore while shopping',
         heading: 'Shop for your favorites meal as e dey hot.',
         description: 'Shop for your favorite meals or drinks and enjoy while doing it.',
-        img: "https://tailwind-landing-page.netlify.app/static/media/Rectangle_3.2ca0ade5.png",
+        img: img1,
         alternate: true,
     },
     step3: {
         title: 'Checkout',
         heading: "When you're done, check out and get it delivered.",
         description: "When you're done, check out and get it  delivered with ease.",
-        img: "https://tailwind-landing-page.netlify.app/static/media/Rectangle_3.2ca0ade5.png",
+        img: img1,
         alternate: false,
     }
 }
@@ -43,7 +43,7 @@ const Steps = () => {
                             <p className="p-5 text-4xl font-semibold leading-relaxed text-center text-black-800 lg:pb-4 lg:text-3xl lg:pl-0 lg:font-bold lg:text-left">{step.heading}</p>
                             <p className="p-5 pb-0 pl-10 pr-10 text-2xl leading-10 text-center text-gray-400 lg:w-5/6 lg:pb-0 lg:text-lg lg:text-left lg:p-0 lg:pl-0 lg:pr-0">{step.description}</p>
                         </div>
-                        <div className="ml-10 lg:ml-0 lg:w-3/6">
+                        <div className="ml-10 lg:ml-0 lg:w-3/6 pt-3">
                             <img className=" lg:-mt-24 lg:-mb-20" src={step.img} alt="" />
                         </div>
                     </div>

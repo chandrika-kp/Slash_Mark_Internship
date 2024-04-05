@@ -1,11 +1,15 @@
 import React from 'react'
 import img from '../../asset/food_logo.png'
 import { FaFacebook, FaGithub, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa6'
+import { IoIosMail } from 'react-icons/io'
 import { NavLink } from 'react-router-dom'
 
 const Footer = () => {
     return (
         <footer className="bg-white dark:bg-gray-900 mt-5">
+             <a href="#" className="text-gray-700 transition hover:opacity-75 float-right dark:text-gray-200 p-3 underline">
+                            Go To Home Page
+                        </a>
             <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
                 <div className="lg:flex lg:items-start lg:gap-8">
                     <div className="w-40 h-40">
@@ -150,53 +154,48 @@ const Footer = () => {
 
                         <ul className="col-span-2 flex justify-start gap-6 lg:col-span-5 lg:justify-end">
                             <li>
-                                <a href="#" target="_blank"
-                                    className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
-                                    <span className="sr-only">Facebook</span>
-
-                                    <FaFacebook />
+                                <a href="https://www.linkedin.com/in/poorna-chandrika-konathala-2b3376232/" target="_blank" className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
+                                    <span className="sr-only">LinkedIn</span>
+                                    <FaLinkedin />
                                 </a>
                             </li>
-
+                            <li>
+                                <a href="https://github.com/chandrika-kp" target="_blank"
+                                    className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
+                                    <span className="sr-only">GitHub</span>
+                                    <FaGithub />
+                                </a>
+                            </li>
                             <li>
                                 <a href="#" target="_blank"
                                     className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
                                     <span className="sr-only">Instagram</span>
-
                                     <FaInstagram />
                                 </a>
                             </li>
-
+                            <li>
+                                <a href="#" target="_blank"
+                                    className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
+                                    <span className="sr-only">Facebook</span>
+                                    <FaFacebook />
+                                </a>
+                            </li>
                             <li>
                                 <a href="#" target="_blank"
                                     className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
                                     <span className="sr-only">Twitter</span>
-
                                     <FaTwitter />
                                 </a>
                             </li>
-
                             <li>
-                                <a href="#" target="_blank"
+                                <a href="mailto:chandrika.450@gmail.com" target="_blank"
                                     className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
-                                    <span className="sr-only">GitHub</span>
-
-                                    <FaGithub />
+                                    <span className="sr-only">EMail</span>
+                                    <IoIosMail />
                                 </a>
                             </li>
 
-                            <li>
-                                <a
-                                    href="#"
 
-                                    target="_blank"
-                                    className="text-gray-700 transition hover:opacity-75 dark:text-gray-200"
-                                >
-                                    <span className="sr-only">LinkedIn</span>
-
-                                    <FaLinkedin />
-                                </a>
-                            </li>
                         </ul>
                     </div>
                 </div>

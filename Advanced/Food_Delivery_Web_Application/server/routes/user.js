@@ -8,7 +8,7 @@ require('dotenv').config();
 const router = express.Router();
 
 router.post('/signup', async (req, res) => {
-    const { username, email, password } = req.body;
+    const { username, email, password ,userType} = req.body;
     const user = await UserModel.findOne({ email });
     if (user) {
         return res.json({ message: "Email already existed" })
@@ -21,6 +21,7 @@ router.post('/signup', async (req, res) => {
         username,
         email,
         password: hashPassword,
+        userType,
 
     });
 
@@ -34,7 +35,7 @@ router.post('/login', async (req, res) => {
     const { email, password } = req.body;
     const user = await UserModel.findOne({ email });
     if (!user) {
-        return res.json({ message: "user is not registered" })
+        return res.json({ message: "Not registered" })
     }
     // else{
     // return res.json({message: "user already existed"})
@@ -46,7 +47,7 @@ router.post('/login', async (req, res) => {
     }
     const token = jwt.sign({ username: user.username }, process.env.JWTKEY, { expiresIn: '1h' })
     res.cookie('token', token, { httpOnly: true, maxAge: 3600000 })
-    return res.json({ status: true, message: "Login sucessfully", username: user.username })
+    return res.json({ status: true, message: "Login sucessfully", username: user.username, type:user.userType })
 
 })
 
@@ -58,7 +59,7 @@ const verifyUser = (req, res, next) => {
             return res.status(401).json({ status: false, message: "No token provided" });
         }
         let decoded = jwt.verify(token, process.env.JWTKEY);
-        req.user = decoded; // Attach decoded user information to request object
+        req.user = decoded; 
         next();
         // jwt.verify(token,  process.env.JWTKEY, (err,decoded ) => {
         //     if (err) {
@@ -87,6 +88,17 @@ router.get('/logout', (req, res) => {
         return res.status(500).json({ status: false, message: 'Logout failed. Please try again later.' });
     }
 });
+
+// list of all users
+router.get('/usersList', async (req,res)=> {
+    try {
+        const users = await UserModel.find();
+        res.json(users); 
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
+})
 
 router.get('/signup', userController.signup_get);
 module.exports = router;

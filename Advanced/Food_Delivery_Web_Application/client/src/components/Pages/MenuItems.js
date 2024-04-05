@@ -19,7 +19,8 @@ const MenuItems = () => {
     const [foodItem, setfoodItem] = useState([]);
     const [loading, setLoading] = useState(false);
     const [cartBtn, setCartBtn] = useState("AddItem");
-
+    
+    axios.defaults.withCredentials = true;
     useEffect(() => {
         axios.get(`http://localhost:6005/foodItems/${id}`)
             .then((response) => {
