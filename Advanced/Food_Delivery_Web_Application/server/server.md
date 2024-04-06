@@ -13,3 +13,5 @@ npm i bcrypt jsonwebtoken cookie-parser
 import express from 'express'
 
 npm i ejs 
+
+npm install razorpay

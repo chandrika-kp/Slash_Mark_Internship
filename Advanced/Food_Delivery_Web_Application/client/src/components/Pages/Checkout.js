@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import Header from './Header';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Checkout = () => {
     const userDetails = useSelector((state) => state.userdata);
@@ -11,12 +12,59 @@ const Checkout = () => {
     const total = subtotal.reduce((acc, curr) => acc + curr, 0);
     const navigate = useNavigate();
 
+    const handlePayment = async () => {
+        // try {
+        //     const response = await axios.post('http://localhost:6005/payment/create-order', {
+        //         amount: total // Pass the total amount to your backend
+        //     });
+
+        //     // // Update user details with paid amount
+        //     // dispatch({ type: 'UPDATE_USER_DETAILS', payload: { ...userDetails, paid: response.data.amount } });
+
+        //     // Redirect user to payment page
+        //     navigate('/payment'); // You need to define your payment route in your router
+        // } catch (error) {
+        //     console.error(error);
+        //     // Handle error
+        // }
+
+        const  {data:{key}} = await axios.get('http://localhost:6005/payment/api/getkey');
+        const  {data:{order}} = await axios.post('http://localhost:6005/payment/create-order',{amount:total- (total * 0.10)});
+        console.log(window);
+
+        // console.log(order);
+        const options = {
+            key,
+            amount:order.amount,
+            currency:"INR",
+            name:"CHANDU'S_FOOD",
+            description:'Razorpay',
+            order_id:order.id,
+            callback_url:'http://localhost:6005/payment/paymentVerification',
+            prefill:{
+                name:'chandu',
+                email:'abc@gmail.com'
+            },
+            notes:{
+                'address':'Razorpay Official'
+            },
+            theme:{
+                'color':"#3399cc"
+            }
+
+        };
+
+        const razor = new window.Razorpay(options);
+        razor.open();
+
+    };
+
     return (<>
         <Header username={userDetails ? userDetails : ''} />
 
         <div className="flex flex-col justify-center sm:flex-row">
 
-            <div className="border-2 border-orange-200 p-6 m-4">
+            {/* <div className="border-2 border-orange-200 p-6 m-4">
                 <form className="needs-validation" novalidate="">
                     <div className="border-b border-gray-900/10 pb-12">
                         <h2 className="text-base font-semibold leading-7 text-gray-900">Billing address</h2>
@@ -220,7 +268,7 @@ const Checkout = () => {
                     <hr className="my-4" />
                     <button className="w-full btn btn-dark btn-lg" type="submit" onClick={(e) => {e.preventDefault();navigate('/'); alert("Your order Placed...Enjoy Food")}}>Continue to checkout</button>
                 </form>
-            </div>
+            </div> */}
 
             <div className="border-2 border-orange-200 p-4 pl-6 m-4 ml-0 text-sm">
                 <h4 className="flex justify-between text-orange-600 text-xl mb-3">
@@ -273,7 +321,9 @@ const Checkout = () => {
                     </div>
                 </form>
 
-
+                <button onClick={handlePayment} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Pay Now
+                </button>
 
             </div>
         </div>

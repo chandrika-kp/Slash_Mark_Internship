@@ -16,6 +16,7 @@ import AdminPage from './components/Admin/AdminPage.js';
 import Users from './components/Admin/Users.js';
 import FoodItems from './components/Admin/FoodItems.js';
 import AdminDetails from './components/Admin/AdminDetails.js';
+import PaymentSuccess from './components/Pages/PaymentSuccess.js';
 
 function App() {
   return (
@@ -38,6 +39,8 @@ function App() {
           <Route path='//admindetails' element={<AdminDetails/>} />
           <Route path='/users' element={<Users/>} />
           <Route path='/fooditems' element={<FoodItems/>} />
+          <Route path='/paymentSuccess' element={<PaymentSuccess/>} />
+          
 
         </Routes>
       </BrowserRouter>
