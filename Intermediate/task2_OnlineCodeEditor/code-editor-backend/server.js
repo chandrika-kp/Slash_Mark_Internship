@@ -28,7 +28,7 @@ app.post('/execute', (req, res) => {
             });
         } 
         else {
-            throw new Error('Unsupported language');
+            throw new Error('Unsupported Language');
         }
     } catch (error) {
         output = `Error executing code: ${error.message}`;
