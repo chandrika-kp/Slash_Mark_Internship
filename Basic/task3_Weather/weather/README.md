@@ -87,3 +87,6 @@ npm start
 If you want to display images based on icons of the obtained data ..see mostly comments of the file `./src/APPInsinglePage.js` 
 
 In that, I used Icons from https://react-icons.github.io/react-icons/ 
+
+# Live Link :
+https://weather-forecast-daily-hourly.netlify.app/
