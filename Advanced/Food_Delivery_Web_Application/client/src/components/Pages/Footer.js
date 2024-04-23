@@ -7,9 +7,9 @@ import { NavLink } from 'react-router-dom'
 const Footer = () => {
     return (
         <footer className="bg-white dark:bg-gray-900 mt-5">
-             <a href="#" className="text-gray-700 transition hover:opacity-75 float-right dark:text-gray-200 p-3 underline">
+             {/* <a href="#" className="text-gray-700 transition hover:opacity-75 float-right dark:text-gray-200 p-3 underline">
                             Go To Home Page
-                        </a>
+                        </a> */}
             <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
                 <div className="lg:flex lg:items-start lg:gap-8">
                     <div className="w-40 h-40">

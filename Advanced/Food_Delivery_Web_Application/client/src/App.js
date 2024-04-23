@@ -17,6 +17,7 @@ import Users from './components/Admin/Users.js';
 import FoodItems from './components/Admin/FoodItems.js';
 import AdminDetails from './components/Admin/AdminDetails.js';
 import PaymentSuccess from './components/Pages/PaymentSuccess.js';
+import UpdateFoodItems from './components/Admin/UpdateFoodItems.js';
 
 function App() {
   return (
@@ -36,9 +37,10 @@ function App() {
           <Route path='/footer' element={<Footer/>} />
           <Route path='*' element={<Error/>} />
           <Route path='/admin' element={<AdminPage/>} />
-          <Route path='//admindetails' element={<AdminDetails/>} />
+          <Route path='/admindetails' element={<AdminDetails/>} />
           <Route path='/users' element={<Users/>} />
           <Route path='/fooditems' element={<FoodItems/>} />
+          <Route path='/editItems/:id' element={<UpdateFoodItems/>} />
           <Route path='/paymentSuccess' element={<PaymentSuccess/>} />
           
 

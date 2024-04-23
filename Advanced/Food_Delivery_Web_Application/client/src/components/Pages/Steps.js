@@ -1,5 +1,7 @@
 import React from 'react'
 import img1 from '../../asset/1.png'
+import img2 from '../../asset/2.png'
+import img3 from '../../asset/3.png'
 
 const stepsData = {
     step1: {
@@ -11,16 +13,16 @@ const stepsData = {
     },
     step2: {
         title: 'Explore while shopping',
-        heading: 'Shop for your favorites meal as e dey hot.',
+        heading: 'Select menu by category & order your favorite food items.',
         description: 'Shop for your favorite meals or drinks and enjoy while doing it.',
-        img: img1,
+        img: img2,
         alternate: true,
     },
     step3: {
         title: 'Checkout',
-        heading: "When you're done, check out and get it delivered.",
+        heading: "Add items to cart,Proceceed to check out then after payment yourfood get delivered.",
         description: "When you're done, check out and get it  delivered with ease.",
-        img: img1,
+        img: img3,
         alternate: false,
     }
 }

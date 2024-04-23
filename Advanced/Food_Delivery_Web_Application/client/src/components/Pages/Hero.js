@@ -1,6 +1,7 @@
 import React from 'react'
 import img1 from '../../asset/img1.jpg';
 import img2 from '../../asset/img2.jpg';
+import { NavLink } from 'react-router-dom';
 const heroData = {
     top: {
         appType: 'Food app',
@@ -44,19 +45,20 @@ const Hero = (heroData) => {
                             <button
                                 className="pt-3 pb-3 pl-12 pr-12 text-2xl font-semibold text-center text-white transition-all bg-orange-600 rounded-full shadow-2xl lg:ml-5 hover:bg-orange-700 focus:outline-none ring-4 ring-orange-600 lg:ring-2 lg:font-medium "
                             >
-                                {values.mainActionText}
+                                {values.mainActionText === 'Register' ?
+                                    <NavLink className='navlink' to="/signup">Register</NavLink> : values.mainActionText
+                                }
                             </button>
                             <button
                                 className="pt-3 pb-3 text-2xl font-semibold text-center text-orange-500 transition-all rounded-full shadow-2xl lg:mr-5 hover:text-orange-500 hover:bg-gray-50 pl-11 pr-11 bg-gray-50 focus:outline-none ring-4 ring-orange-500 lg:font-medium lg:text-gray-50 lg:bg-opacity-0 lg:ring-2 lg:ring-white"
                             >
-                                {values.extraActionText}
+                                {values.extraActionText === 'Login' ?
+                                    <NavLink className='navlink' to="/login">Login</NavLink> : values.extraActionText
+                                }
                             </button>
                         </div>
 
                     </div>
-                    {/* {key == 'bottom' && (
- 
-                    )} */}
 
                 </div>
 
