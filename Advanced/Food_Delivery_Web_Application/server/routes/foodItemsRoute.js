@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
         const foodItems = await FoodItemsModel.find();
         // console.log('FoodItems:', foodItems.length); 
         // console.log('All:', foodItems); // actual food items retrieved
-        res.json(foodItems); 
+        res.json(foodItems);
     } catch (err) {
         console.error(err);
         res.status(500).send('Server Error');
@@ -32,12 +32,12 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// 
+// ADD FOODITEM
 router.post('/', async (req, res) => {
-    const { id,img, name, price, desc ,category,rating} = req.body;
+    const { id, img, name, price, desc, category, rating } = req.body;
 
     const newItem = new FoodItemsModel({
-        id,img, name, price, desc ,category,rating,
+        id, img, name, price, desc, category, rating,
     });
 
     await newItem.save()
@@ -45,4 +45,41 @@ router.post('/', async (req, res) => {
     return res.json({ status: true, message: "Item added" })
 })
 
+// Update fooditem
+router.put('/:id', async (req, res) => {
+    const id = req.params.id;
+    try {
+        const updatedItem = await FoodItemsModel.findByIdAndUpdate(
+            id,
+            req.body,
+            // {
+            //     img: req.body.img,
+            //     name: req.body.name,
+            //     price: req.body.price,
+            //     desc: req.body.desc,
+            //     category: req.body.category,
+            //     rating: req.body.rating
+            // }
+            { new: true });
+        if (!updatedItem) {
+            return res.status(404).json({ message: 'Food item not found' });
+        }
+        res.status(200).json(updatedItem);
+    } catch (err) {
+        console.error('Error updating food item:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+// Delete fooditem
+router.delete('/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        await FoodItemsModel.findByIdAndDelete(id); //here it Find and delete the document by its ' _id '
+        // await FoodItemsModel.findOneAndDelete({ id: id }); // here it takes id like 1,2,3..
+        res.json({ message: 'Food item deleted sucessfully' });
+    } catch {
+        res.status(500).send('Server Error');
+    }
+})
 module.exports = router;
