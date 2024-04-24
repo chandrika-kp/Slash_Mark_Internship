@@ -66,7 +66,7 @@ const MenuItems = () => {
                             <h2 className="text-2xl font-bold mb-4">{foodItem.name}</h2>
                             <p className="text-lg mb-4">{foodItem.desc}</p>
                             <p className="mb-2">Category: {foodItem.category}</p>
-                            <p className="mb-2">Price: ${foodItem.price}</p>
+                            <p className="mb-2">Price: ₹{foodItem.price}</p>
                             <p className="mb-2">Rating: {foodItem.rating}</p>
                             {/* <p className="mb-4">Rating: {foodItem.rating.rate} ({foodItem.rating.count} reviews)</p> */}
                             {/* <button className="btn">

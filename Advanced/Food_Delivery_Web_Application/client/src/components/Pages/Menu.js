@@ -72,7 +72,7 @@ const Menu = () => {
                                             </div>
                                             <h3 className="mt-4 text-sm text-gray-700">{item.name}</h3>
                                             <p>{item.desc}</p>
-                                            <p className="mt-1 text-lg font-medium text-gray-900">Price: ${item.price}</p>
+                                            <p className="mt-1 text-lg font-medium text-gray-900">Price: ₹{item.price}</p>
                                             <button className='btn'>
                                                 <NavLink to={`/menu/${item.id}`} >Order Now</NavLink></button>
                                         </a>
